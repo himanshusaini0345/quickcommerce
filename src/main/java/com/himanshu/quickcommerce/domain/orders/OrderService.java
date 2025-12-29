@@ -16,12 +16,15 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private final CustomerRepository customerRepository;
+    private final OrderMapper orderMapper;
 
     public OrderService(
             OrderRepository orderRepository,
-            CustomerRepository customerRepository) {
+            CustomerRepository customerRepository,
+            OrderMapper orderMapper) {
         this.orderRepository = orderRepository;
         this.customerRepository = customerRepository;
+        this.orderMapper = orderMapper;
     }
 
     @Transactional
@@ -47,8 +50,6 @@ public class OrderService {
     }
 
     public List<OrderDto> getOrders() {
-        return orderRepository.findAll().stream()
-                .map(o -> new OrderDto(o.getId(), o.getTotal()))
-                .toList();
+        return orderMapper.toDtoList(orderRepository.findAll());
     }
 }

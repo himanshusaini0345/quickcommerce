@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.himanshu.quickcommerce.domain.orders.OrderDto;
 import com.himanshu.quickcommerce.persistence.customers.CustomerRepository;
 
 import jakarta.transaction.Transactional;
@@ -14,8 +13,11 @@ public class CustomerService {
 
     private final CustomerRepository customerRepository;
 
-    public CustomerService(CustomerRepository customerRepository) {
+    private final CustomerMapper customerMapper;
+
+    public CustomerService(CustomerRepository customerRepository, CustomerMapper customerMapper) {
         this.customerRepository = customerRepository;
+        this.customerMapper = customerMapper;
     }
 
     @Transactional
@@ -31,14 +33,6 @@ public class CustomerService {
     }
 
     public List<CustomerDto> getCustomers() {
-        return customerRepository.findAll().stream()
-                .map(c -> new CustomerDto(
-                        c.getId(),
-                        c.getName(),
-                        c.getCreditLimit(),
-                        c.getOrders().stream()
-                                .map(o -> new OrderDto(o.getId(), o.getTotal()))
-                                .toList()))
-                .toList();
+        return customerMapper.toDtoList(customerRepository.findAll());
     }
 }
