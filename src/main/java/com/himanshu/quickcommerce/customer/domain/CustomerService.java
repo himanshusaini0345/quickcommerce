@@ -1,10 +1,10 @@
-package com.himanshu.quickcommerce.domain.customers;
+package com.himanshu.quickcommerce.customer.domain;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.himanshu.quickcommerce.persistence.customers.CustomerRepository;
+import com.himanshu.quickcommerce.customer.persistence.CustomerRepository;
 
 import jakarta.transaction.Transactional;
 

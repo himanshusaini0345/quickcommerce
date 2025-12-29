@@ -1,4 +1,4 @@
-package com.himanshu.quickcommerce.web.customers;
+package com.himanshu.quickcommerce.customer.web;
 
 import lombok.Data;
 

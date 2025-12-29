@@ -1,4 +1,4 @@
-package com.himanshu.quickcommerce.domain.orders;
+package com.himanshu.quickcommerce.order.domain;
 
 public record OrderDto(
         Long id,

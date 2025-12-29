@@ -1,4 +1,4 @@
-package com.himanshu.quickcommerce.domain.orders;
+package com.himanshu.quickcommerce.order.domain;
 
 import java.util.List;
 

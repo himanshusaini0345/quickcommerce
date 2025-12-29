@@ -1,11 +1,11 @@
-package com.himanshu.quickcommerce.web.customers;
+package com.himanshu.quickcommerce.customer.web;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.himanshu.quickcommerce.domain.customers.Customer;
-import com.himanshu.quickcommerce.domain.customers.CustomerDto;
-import com.himanshu.quickcommerce.domain.customers.CustomerService;
+import com.himanshu.quickcommerce.customer.domain.Customer;
+import com.himanshu.quickcommerce.customer.domain.CustomerDto;
+import com.himanshu.quickcommerce.customer.domain.CustomerService;
 
 import java.util.List;
 

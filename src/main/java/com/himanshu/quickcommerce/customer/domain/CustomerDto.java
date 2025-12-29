@@ -1,8 +1,8 @@
-package com.himanshu.quickcommerce.domain.customers;
+package com.himanshu.quickcommerce.customer.domain;
 
 import java.util.List;
 
-import com.himanshu.quickcommerce.domain.orders.OrderDto;
+import com.himanshu.quickcommerce.order.domain.OrderDto;
 
 public record CustomerDto(
         Long id,

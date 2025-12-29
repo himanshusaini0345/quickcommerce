@@ -1,10 +1,10 @@
-package com.himanshu.quickcommerce.domain.customers;
+package com.himanshu.quickcommerce.customer.domain;
 
 import java.util.List;
 
 import org.mapstruct.Mapper;
 
-import com.himanshu.quickcommerce.domain.orders.OrderMapper;
+import com.himanshu.quickcommerce.order.domain.OrderMapper;
 
 @Mapper(componentModel = "spring", uses = { OrderMapper.class })
 public interface CustomerMapper {

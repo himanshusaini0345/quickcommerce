@@ -1,6 +1,6 @@
-package com.himanshu.quickcommerce.domain.orders;
+package com.himanshu.quickcommerce.order.domain;
 
-import com.himanshu.quickcommerce.domain.customers.Customer;
+import com.himanshu.quickcommerce.customer.domain.Customer;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -14,16 +14,17 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="orders")
+@Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
     private double total;
 
     @ManyToOne
     private Customer customer;
-    
+
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 

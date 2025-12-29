@@ -1,4 +1,4 @@
-package com.himanshu.quickcommerce.web.orders;
+package com.himanshu.quickcommerce.order.web;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.himanshu.quickcommerce.domain.orders.Order;
-import com.himanshu.quickcommerce.domain.orders.OrderDto;
-import com.himanshu.quickcommerce.domain.orders.OrderService;
+import com.himanshu.quickcommerce.order.domain.Order;
+import com.himanshu.quickcommerce.order.domain.OrderDto;
+import com.himanshu.quickcommerce.order.domain.OrderService;
 
 @RestController
 @RequestMapping("/orders")
@@ -36,7 +36,7 @@ public class OrderController {
     }
 
     @GetMapping
-    public List<OrderDto> getOrders() {
+    public List<OrderDto> all() {
         return orderService.getOrders();
     }
 }

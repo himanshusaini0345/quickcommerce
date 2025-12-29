@@ -1,7 +1,29 @@
-GET http://localhost:8080/customers 
-Content-Type: application/json
+@token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaW1hbnNodXNhaW5pYi4xNTlAZ21haWwuY29tIiwiaWF0IjoxNzY3MDExODMyLCJleHAiOjE3NjcwMTU0MzJ9.O-WdzB6CC5nN-AYgIKmSKLavW5lMrH50src9MiZlAtA
 
-###
+### Get customers
+GET http://localhost:8080/customers
+Authorization: Bearer {{token}}
 
+
+### Get Orders
 GET http://localhost:8080/orders
+Authorization: Bearer {{token}}
+
+
+### Signup
+POST http://localhost:8080/auth/signup
 Content-Type: application/json
+
+{
+  "email": "himanshusainib.159@gmail.com",
+  "password": "1234"
+}
+
+### Login
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "email": "himanshusainib.159@gmail.com",
+  "password": "1234"
+}

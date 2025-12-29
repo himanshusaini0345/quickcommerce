@@ -1,4 +1,4 @@
-package com.himanshu.quickcommerce.domain.orders;
+package com.himanshu.quickcommerce.order.domain;
 
 public enum OrderStatus {
     CREATED, CANCELLED
