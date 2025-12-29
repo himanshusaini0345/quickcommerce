@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaW1hbnNodXNhaW5pYi4xNTlAZ21haWwuY29tIiwiaWF0IjoxNzY3MDExODMyLCJleHAiOjE3NjcwMTU0MzJ9.O-WdzB6CC5nN-AYgIKmSKLavW5lMrH50src9MiZlAtA
+@token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaW1hbnNodXNhaW5pYi4xNTlAZ21haWwuY29tIiwiaWF0IjoxNzY3MDE4NDU1LCJleHAiOjE3NjcwMjIwNTV9.U-g_A2Lt3rrUe6o3fhurZYa1jubApWcHal1XCydWpG4
 
 ### Get customers
 GET http://localhost:8080/customers

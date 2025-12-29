@@ -1,5 +1,6 @@
 package com.himanshu.quickcommerce.auth.domain;
 
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,10 +30,10 @@ public class UserService {
     public LoginResponse login(String email, String password) {
         AppUser user = repo.findByEmail(
                 email)
-                .orElseThrow();
+                .orElseThrow(() ->new BadCredentialsException("Invalid credentials"));
 
         if (!encoder.matches(password, user.getPasswordHash())) {
-            throw new RuntimeException("Invalid credentials");
+            throw new BadCredentialsException("Invalid credentials");
         }
 
         return new LoginResponse(jwt.generateToken(user.getEmail()));
