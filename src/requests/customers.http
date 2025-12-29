@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaW1hbnNodXNhaW5pYi4xNTlAZ21haWwuY29tIiwiaWF0IjoxNzY3MDE4NDU1LCJleHAiOjE3NjcwMjIwNTV9.U-g_A2Lt3rrUe6o3fhurZYa1jubApWcHal1XCydWpG4
+@token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaW1hbnNodXNhaW5pYi4xNTlAZ21haWwuY29tIiwiaWF0IjoxNzY3MDI1NTE2LCJleHAiOjE3NjcwMjkxMTZ9.uFQrgO8PVRBsuoZVT4mfzvIZ_uNbY6vOSfkz4B_GA
 
 ### Get customers
 GET http://localhost:8080/customers
@@ -15,7 +15,7 @@ POST http://localhost:8080/auth/signup
 Content-Type: application/json
 
 {
-  "email": "himanshusainib.159@gmail.com",
+  "email": "himanshusaini0345@gmail.com",
   "password": "1234"
 }
 

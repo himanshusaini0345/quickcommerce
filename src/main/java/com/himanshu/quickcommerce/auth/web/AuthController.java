@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.himanshu.quickcommerce.auth.domain.UserService;
+import com.himanshu.quickcommerce.auth.domain.AppUserDetailsService;
 import com.himanshu.quickcommerce.auth.domain.contract.LoginRequest;
 import com.himanshu.quickcommerce.auth.domain.contract.LoginResponse;
 import com.himanshu.quickcommerce.auth.domain.contract.SignupRequest;
@@ -17,19 +17,20 @@ import com.himanshu.quickcommerce.auth.domain.contract.SignupRequest;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-    private final UserService userService;
+    private final AppUserDetailsService appUserDetailsService;
 
-    public AuthController(UserService userService) {
-        this.userService = userService;
+    public AuthController(AppUserDetailsService userService) {
+        this.appUserDetailsService = userService;
     }
 
     @PostMapping("/signup")
-    public void signup(@RequestBody SignupRequest r) {
-        userService.signup(r.getEmail(), r.getPassword());
+    public ResponseEntity<Void> signup(@RequestBody SignupRequest r) {
+        appUserDetailsService.signup(r.getEmail(), r.getPassword());
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest r) {
-        return ResponseEntity.ok(userService.login(r.getEmail(), r.getPassword()));
+        return ResponseEntity.ok(appUserDetailsService.login(r.getEmail(), r.getPassword()));
     }
 }

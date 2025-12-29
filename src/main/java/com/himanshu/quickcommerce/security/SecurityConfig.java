@@ -10,9 +10,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class SecurityConfig {
     private final JwtAuthFilter jwtAuthFilter;
+    private final JwtAuthEntryPoint jwtAuthEntryPoint;
 
-    public SecurityConfig(JwtAuthFilter jwtAuthFilter) {
+    public SecurityConfig(JwtAuthFilter jwtAuthFilter, JwtAuthEntryPoint jwtAuthEntryPoint) {
         this.jwtAuthFilter = jwtAuthFilter;
+        this.jwtAuthEntryPoint = jwtAuthEntryPoint;
     }
 
     @Bean
@@ -22,11 +24,11 @@ public class SecurityConfig {
                 .formLogin(form -> form.disable())
                 .httpBasic(basic -> basic.disable())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll().anyRequest().authenticated())
-                .addFilterBefore(
-                        jwtAuthFilter,
-                        UsernamePasswordAuthenticationFilter.class);
+                .authorizeHttpRequests(
+                        auth -> auth.requestMatchers("/auth/**").permitAll().anyRequest().authenticated())
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling(
+                        ex -> ex.authenticationEntryPoint(jwtAuthEntryPoint));
         return http.build();
     }
 }
