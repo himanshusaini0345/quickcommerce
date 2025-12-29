@@ -1,5 +1,7 @@
 package com.himanshu.quickcommerce.domain.orders;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.himanshu.quickcommerce.domain.customers.Customer;
@@ -27,7 +29,7 @@ public class OrderService {
 
         Customer customer = customerRepository.findById(customerId)
                 .orElseThrow(() -> new IllegalArgumentException("Customer not found"));
-                
+
         customer.reserveCredit(orderTotal);
 
         Order order = Order.create(customer, orderTotal);
@@ -36,10 +38,17 @@ public class OrderService {
         return order.getId();
     }
 
+    @Transactional
     public void cancelOrder(Long orderId) {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new IllegalArgumentException("Order not found"));
 
         order.cancel();
+    }
+
+    public List<OrderDto> getOrders() {
+        return orderRepository.findAll().stream()
+                .map(o -> new OrderDto(o.getId(), o.getTotal()))
+                .toList();
     }
 }

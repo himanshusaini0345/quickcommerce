@@ -1,9 +1,14 @@
 package com.himanshu.quickcommerce.domain.customers;
 
+import java.util.List;
+
+import com.himanshu.quickcommerce.domain.orders.Order;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 
 @Getter
@@ -14,6 +19,9 @@ public class Customer {
     private long id;
     private String name;
     private double creditLimit;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orders;
 
     public static Customer create(String name, double creditLimit) {
         Customer customer = new Customer();
