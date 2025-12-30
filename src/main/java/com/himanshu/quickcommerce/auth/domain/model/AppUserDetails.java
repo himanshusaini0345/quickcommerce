@@ -1,4 +1,4 @@
-package com.himanshu.quickcommerce.security;
+package com.himanshu.quickcommerce.auth.domain.model;
 
 import java.util.Collection;
 import java.util.Collections;

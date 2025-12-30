@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import com.himanshu.quickcommerce.auth.domain.contract.LoginResponse;
 import com.himanshu.quickcommerce.auth.domain.entity.AppUser;
 import com.himanshu.quickcommerce.auth.domain.exception.UserAlreadyExistsException;
+import com.himanshu.quickcommerce.auth.domain.model.AppUserDetails;
 import com.himanshu.quickcommerce.auth.persistence.UserRepository;
-import com.himanshu.quickcommerce.security.AppUserDetails;
 import com.himanshu.quickcommerce.security.JwtService;
 
 @Service
