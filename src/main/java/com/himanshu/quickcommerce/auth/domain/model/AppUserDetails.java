@@ -19,9 +19,8 @@ public class AppUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // adjust if you have roles table
         return Collections.singleton(
-                new SimpleGrantedAuthority("ROLE_USER"));
+                new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
     }
 
     @Override

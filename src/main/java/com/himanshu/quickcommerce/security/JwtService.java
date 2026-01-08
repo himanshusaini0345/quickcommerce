@@ -3,10 +3,13 @@ package com.himanshu.quickcommerce.security;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+
+import com.himanshu.quickcommerce.auth.domain.model.AppUserDetails;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
@@ -32,6 +35,11 @@ public class JwtService {
             Map<String, Object> extraClaims,
             UserDetails userDetails) {
 
+        AppUserDetails aud = (AppUserDetails) userDetails;
+        Map<String, Object> claims = new HashMap<>(extraClaims);
+
+        claims.put("role", aud.getUser().getRole().name());
+
         return Jwts.builder()
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
@@ -47,11 +55,14 @@ public class JwtService {
                 .getSubject();
     }
 
-    public boolean isTokenValid(String token, UserDetails userDetails) {
+    public String extractRole(String token) {
+        return extractAllClaims(token).get("role", String.class);
+    }
+
+    public boolean isTokenValid(String token) {
         try {
-            final String userName = extractUsername(token);
-            return userName.equals(userDetails.getUsername()) && !isTokenExpired(token);
-        } catch (JwtException | IllegalArgumentException ex) {
+            return !isTokenExpired(token);
+        } catch (JwtException e) {
             return false;
         }
     }

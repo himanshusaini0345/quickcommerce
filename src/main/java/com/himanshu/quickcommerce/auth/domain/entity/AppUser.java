@@ -1,7 +1,10 @@
 package com.himanshu.quickcommerce.auth.domain.entity;
 
+import com.himanshu.quickcommerce.auth.domain.model.Role;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,13 +22,21 @@ public class AppUser {
 
     private String passwordHash;
 
+    @Enumerated
+    private Role role;
+
     protected AppUser() {
     }
 
     public static AppUser create(String email, String hash) {
+        return create(email, hash, Role.CUSTOMER);
+    }
+
+    public static AppUser create(String email, String hash, Role role) {
         AppUser u = new AppUser();
         u.email = email;
         u.passwordHash = hash;
+        u.role = role;
         return u;
     }
 }

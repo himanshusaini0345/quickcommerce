@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaW1hbnNodXNhaW5pYi4xNTlAZ21haWwuY29tIiwiaWF0IjoxNzY3MDg3OTYwLCJleHAiOjE3NjcwOTE1NjB9._VEwOeXGwOfpJOp5ki20JtKJbLFT7CUqH_LuIMITSNQ
+@token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaW1hbnNodXNhaW5pYi4xNTlAZ21haWwuY29tIiwiaWF0IjoxNzY3ODY4MzI0LCJleHAiOjE3Njc4NzE5MjR9.xKww7EsIsN64tl3WOANKRqVFrSzVptUS77LRN0My7TY
 
 ### Get customers
 GET http://localhost:8080/customers
@@ -9,13 +9,30 @@ Authorization: Bearer {{token}}
 GET http://localhost:8080/orders
 Authorization: Bearer {{token}}
 
+### Get Products
+GET http://localhost:8080/products
+Authorization: Bearer {{token}}
+
+### Create Product
+POST http://localhost:8080/products
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name" : "Mobile",
+  "price": "560"
+}
+
+### Test
+POST http://localhost:8080/products/test
+Authorization: Bearer {{token}}
 
 ### Signup
 POST http://localhost:8080/auth/signup
 Content-Type: application/json
 
 {
-  "email": "himanshusaini0345@gmail.com",
+  "email": "himanshusaini03456@gmail.com",
   "password": "1234"
 }
 
