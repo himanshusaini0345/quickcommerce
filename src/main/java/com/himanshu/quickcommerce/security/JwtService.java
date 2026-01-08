@@ -15,16 +15,17 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
 @Component
 public class JwtService {
 
-    private static final String SECRET = "very-strong-secret-key-should-be-256-bit";
-    private static final long EXPIRATION_MS = 1000 * 60 * 60;
+    private static final String SECRET = "wqZq3sK6XxQY8y0hK7pQ0vJp5cTz2nA4M6FJm8eR9dQ=";
+    private static final long EXPIRATION_MS = 1000 * 15;
 
     private Key getSigningKey() {
-        return Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
+        return Keys.hmacShaKeyFor(Decoders.BASE64.decode(SECRET));
     }
 
     public String generateToken(UserDetails userDetails) {
@@ -41,7 +42,7 @@ public class JwtService {
         claims.put("role", aud.getUser().getRole().name());
 
         return Jwts.builder()
-                .setClaims(extraClaims)
+                .setClaims(claims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(
@@ -59,25 +60,11 @@ public class JwtService {
         return extractAllClaims(token).get("role", String.class);
     }
 
-    public boolean isTokenValid(String token) {
-        try {
-            return !isTokenExpired(token);
-        } catch (JwtException e) {
-            return false;
-        }
-    }
-
-    private Claims extractAllClaims(String token) {
+    public Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
-    }
-
-    private boolean isTokenExpired(String token) {
-        return extractAllClaims(token)
-                .getExpiration()
-                .before(new Date());
     }
 }

@@ -10,13 +10,17 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 
 @Component
+@Slf4j
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
@@ -43,25 +47,24 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String token = authHeader.substring(7);
 
         try {
-            String username = jwtService.extractUsername(token);
+            Claims claims = jwtService.extractAllClaims(token);
+            String username = claims.getSubject();
+            String role = claims.get("role", String.class);
 
             if (username != null &&
                     SecurityContextHolder.getContext().getAuthentication() == null) {
-                String role = jwtService.extractRole(token);
 
-                if (jwtService.isTokenValid(token)) {
+                UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
+                        username, null, List.of(new SimpleGrantedAuthority("ROLE_" + role)));
 
-                    UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
-                            username, null, List.of(new SimpleGrantedAuthority("ROLE_"+role)));
-
-                    SecurityContextHolder.getContext()
-                            .setAuthentication(auth);
-                }
+                SecurityContextHolder.getContext()
+                        .setAuthentication(auth);
             }
 
             chain.doFilter(request, response);
 
-        } catch (JwtException ex) {
+        }
+        catch (JwtException ex) {
             SecurityContextHolder.clearContext();
             throw new BadCredentialsException("Invalid JWT", ex);
         }
