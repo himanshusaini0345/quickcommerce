@@ -1,13 +1,13 @@
-package com.himanshu.quickcommerce.auth.domain.contract;
+package com.himanshu.quickcommerce.auth.domain.dto;
 
 import lombok.Getter;
 
 @Getter
-public class LoginResponse {
+public class LoginResponseDto {
     private String accessToken;
     private String refreshToken;
 
-    public LoginResponse(String accessToken, String refreshToken) {
+    public LoginResponseDto(String accessToken, String refreshToken) {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken; 
     }

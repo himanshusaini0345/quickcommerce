@@ -9,19 +9,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.himanshu.quickcommerce.product.domain.Product;
-import com.himanshu.quickcommerce.product.domain.ProductDto;
+import com.himanshu.quickcommerce.product.domain.dto.ProductDto;
+import com.himanshu.quickcommerce.product.domain.service.ProductService;
 
 @RestController
 @RequestMapping("/products")
 public class ProductController {
+    private final ProductService productService;
+
     
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
+
     @GetMapping
     public List<ProductDto> getProducts() {
-        ProductDto dto = new ProductDto();
-        dto.setName("Laptop");
-        dto.setPrice(1200);
-        return List.of(dto);
+        return 
     }
 
     @PostMapping

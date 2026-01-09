@@ -1,4 +1,4 @@
-package com.himanshu.quickcommerce.product.domain;
+package com.himanshu.quickcommerce.product.domain.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +18,8 @@ public class Product {
 
     private String name;
     private double price;
+
+    protected Product(){}
 
     public static Product create(String name, double price) {
         Product p = new Product();

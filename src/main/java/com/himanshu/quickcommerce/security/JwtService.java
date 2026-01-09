@@ -22,7 +22,7 @@ import io.jsonwebtoken.security.Keys;
 public class JwtService {
 
     private static final String SECRET = "wqZq3sK6XxQY8y0hK7pQ0vJp5cTz2nA4M6FJm8eR9dQ=";
-    private static final long EXPIRATION_MS = 1000 * 15;
+    private static final long EXPIRATION_MS = 1000 * 60 ;
 
     private Key getSigningKey() {
         return Keys.hmacShaKeyFor(Decoders.BASE64.decode(SECRET));

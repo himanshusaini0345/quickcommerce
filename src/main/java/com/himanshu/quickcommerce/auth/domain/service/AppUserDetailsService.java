@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.himanshu.quickcommerce.auth.domain.contract.LoginResponse;
+import com.himanshu.quickcommerce.auth.domain.dto.LoginResponseDto;
 import com.himanshu.quickcommerce.auth.domain.entity.AppUser;
 import com.himanshu.quickcommerce.auth.domain.entity.RefreshToken;
 import com.himanshu.quickcommerce.auth.domain.exception.UserAlreadyExistsException;
@@ -41,7 +41,7 @@ public class AppUserDetailsService implements UserDetailsService {
                 encoder.encode(password)));
     }
 
-    public LoginResponse login(String email, String password) {
+    public LoginResponseDto login(String email, String password) {
         AppUser user = repo.findByEmail(
                 email)
                 .orElseThrow(() -> new BadCredentialsException("Invalid credentials"));
@@ -52,10 +52,10 @@ public class AppUserDetailsService implements UserDetailsService {
         UserDetails userDetails = new AppUserDetails(user);
         String accessToken = jwt.generateToken(userDetails);
         String refreshToken = refreshTokenService.create(userDetails.getUsername()).getToken();
-        return new LoginResponse(accessToken, refreshToken);
+        return new LoginResponseDto(accessToken, refreshToken);
     }
 
-    public LoginResponse refresh(String refreshToken) {
+    public LoginResponseDto refresh(String refreshToken) {
         RefreshToken rt = refreshTokenService.verify(refreshToken);
 
         refreshTokenService.delete(refreshToken);
@@ -66,7 +66,7 @@ public class AppUserDetailsService implements UserDetailsService {
 
         String newAccessToken = jwt.generateToken(new AppUserDetails(user));
 
-        return new LoginResponse(newAccessToken, newRToken.getToken());
+        return new LoginResponseDto(newAccessToken, newRToken.getToken());
     }
 
     @Override

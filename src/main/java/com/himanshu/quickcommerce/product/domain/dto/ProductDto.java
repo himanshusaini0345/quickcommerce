@@ -1,4 +1,4 @@
-package com.himanshu.quickcommerce.product.domain;
+package com.himanshu.quickcommerce.product.domain.dto;
 
 import lombok.Getter;
 import lombok.Setter;

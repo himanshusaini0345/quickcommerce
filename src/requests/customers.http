@@ -1,20 +1,21 @@
-@token = eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ1VTVE9NRVIiLCJzdWIiOiJoaW1hbnNodXNhaW5pYi4xNTlAZ21haWwuY29tIiwiaWF0IjoxNzY3ODY5NjU2LCJleHAiOjE3Njc4Njk2NzF9.AcJ9HT2by4p1p1O7gkALYe84FMjSFOmuN1TwW0B8QVI
+@baseUrl = http://localhost:8080
+@token = eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ1VTVE9NRVIiLCJzdWIiOiJoaW1hbnNodXNhaW5pYi4xNTlAZ21haWwuY29tIiwiaWF0IjoxNzY3OTMyNjIzLCJleHAiOjE3Njc5MzI2ODN9.RTOltDJIjmpmPpSclQpggIntSm3A51t-9OYL62pELP8
 
 ### Get customers
-GET http://localhost:8080/customers
+GET {{baseUrl}}/customers
 Authorization: Bearer {{token}}
 
 
 ### Get Orders
-GET http://localhost:8080/orders
+GET {{baseUrl}}/orders
 Authorization: Bearer {{token}}
 
 ### Get Products
-GET http://localhost:8080/products
+GET {{baseUrl}}/products
 Authorization: Bearer {{token}}
 
 ### Create Product
-POST http://localhost:8080/products
+POST {{baseUrl}}/products
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -23,12 +24,8 @@ Content-Type: application/json
   "price": "560"
 }
 
-### Test
-POST http://localhost:8080/products/test
-Authorization: Bearer {{token}}
-
 ### Signup
-POST http://localhost:8080/auth/signup
+POST {{baseUrl}}/auth/signup
 Content-Type: application/json
 
 {
@@ -37,10 +34,19 @@ Content-Type: application/json
 }
 
 ### Login
-POST http://localhost:8080/auth/login
+POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
   "email": "himanshusainib.159@gmail.com",
   "password": "1234"
 }
+
+### Refresh
+POST {{baseUrl}}/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken":"70113b00-87b6-4efa-a531-c44d504608af"
+}
+
