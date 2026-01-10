@@ -24,13 +24,13 @@ public class ProductController {
 
     @GetMapping
     public List<ProductDto> getProducts() {
-        return 
+        return productService.getProducts();
     }
 
     @PostMapping
     @PreAuthorize("hasRole('STORE_MANAGER')")
     public ProductDto createProduct(@RequestBody ProductDto productDto) {
-        return productDto;
+        return productService.create(productDto.getName(), productDto.getPrice());
     }
 
     @PostMapping("/test")

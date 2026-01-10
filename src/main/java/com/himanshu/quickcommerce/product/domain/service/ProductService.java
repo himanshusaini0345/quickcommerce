@@ -21,8 +21,8 @@ public class ProductService {
         this.productMapper = productMapper;
     }
 
-    public List<Product> getProducts() {
-        return productMapper.toDtoList(getProducts()) productRepository.findAll();
+    public List<ProductDto> getProducts() {
+        return productMapper.toDtoList(productRepository.findAll());
     }
 
     @Transactional

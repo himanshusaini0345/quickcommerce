@@ -1,6 +1,5 @@
 package com.himanshu.quickcommerce.security;
 
-import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Component;
 import com.himanshu.quickcommerce.auth.domain.model.AppUserDetails;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -22,7 +20,7 @@ import io.jsonwebtoken.security.Keys;
 public class JwtService {
 
     private static final String SECRET = "wqZq3sK6XxQY8y0hK7pQ0vJp5cTz2nA4M6FJm8eR9dQ=";
-    private static final long EXPIRATION_MS = 1000 * 60 ;
+    private static final long EXPIRATION_MS = 1000 * 60 * 60;
 
     private Key getSigningKey() {
         return Keys.hmacShaKeyFor(Decoders.BASE64.decode(SECRET));
