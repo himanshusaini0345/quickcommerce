@@ -14,17 +14,17 @@ import com.himanshu.quickcommerce.auth.domain.entity.AppUser;
 import com.himanshu.quickcommerce.auth.domain.entity.RefreshToken;
 import com.himanshu.quickcommerce.auth.domain.exception.UserAlreadyExistsException;
 import com.himanshu.quickcommerce.auth.domain.model.AppUserDetails;
-import com.himanshu.quickcommerce.auth.persistence.UserRepository;
+import com.himanshu.quickcommerce.auth.persistence.AppUserRepository;
 import com.himanshu.quickcommerce.security.JwtService;
 
 @Service
 public class AppUserDetailsService implements UserDetailsService {
-    private final UserRepository repo;
+    private final AppUserRepository repo;
     private final PasswordEncoder encoder;
     private final JwtService jwt;
     private final RefreshTokenService refreshTokenService;
 
-    public AppUserDetailsService(UserRepository repo, PasswordEncoder encoder, JwtService jwt,
+    public AppUserDetailsService(AppUserRepository repo, PasswordEncoder encoder, JwtService jwt,
             RefreshTokenService refreshTokenService) {
         this.repo = repo;
         this.encoder = encoder;

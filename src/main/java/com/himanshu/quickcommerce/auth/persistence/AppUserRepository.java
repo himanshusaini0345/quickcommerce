@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.himanshu.quickcommerce.auth.domain.entity.AppUser;
 
-public interface UserRepository extends JpaRepository<AppUser, Long> {
+public interface AppUserRepository extends JpaRepository<AppUser, Long> {
     Optional<AppUser> findByEmail(String email);
 }

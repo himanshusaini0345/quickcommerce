@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.himanshu.quickcommerce.auth.domain.entity.AppUser;
+import com.himanshu.quickcommerce.auth.persistence.AppUserRepository;
 import com.himanshu.quickcommerce.customer.persistence.CustomerRepository;
 
 import jakarta.transaction.Transactional;
@@ -12,17 +14,21 @@ import jakarta.transaction.Transactional;
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
+    private final AppUserRepository userRepository;
 
     private final CustomerMapper customerMapper;
 
-    public CustomerService(CustomerRepository customerRepository, CustomerMapper customerMapper) {
+    public CustomerService(CustomerRepository customerRepository, CustomerMapper customerMapper, 
+            AppUserRepository userRepository) {
         this.customerRepository = customerRepository;
         this.customerMapper = customerMapper;
+        this.userRepository = userRepository;
     }
 
     @Transactional
-    public Long createCustomer(String name, double creditLimit) {
-        Customer customer = Customer.create(name, creditLimit);
+    public Long createCustomer(Long userId, String name, double creditLimit) {
+        AppUser user = userRepository.findById(userId).orElseThrow();
+        Customer customer = Customer.create(user,name, creditLimit);
         customerRepository.save(customer);
         return customer.getId();
     }

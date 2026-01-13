@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
@@ -25,7 +24,7 @@ public class CustomerController {
 
     @PostMapping
     public Long createCustomer(@RequestBody CreateCustomerRequest request) {
-        return customerService.createCustomer(request.getName(), request.getCreditLimit());
+        return customerService.createCustomer(request.getId(), request.getName(), request.getCreditLimit());
     }
 
     @GetMapping
