@@ -17,7 +17,6 @@ import com.himanshu.quickcommerce.product.domain.service.ProductService;
 public class ProductController {
     private final ProductService productService;
 
-    
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
