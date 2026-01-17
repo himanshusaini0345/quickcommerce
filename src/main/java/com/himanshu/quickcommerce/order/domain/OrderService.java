@@ -50,6 +50,6 @@ public class OrderService {
     }
 
     public List<OrderDto> getOrders() {
-        return orderMapper.toDtoList(orderRepository.findAll());
+        return orderRepository.findAll().stream().map(orderMapper::toDto).toList();
     }
 }

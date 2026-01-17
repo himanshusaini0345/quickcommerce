@@ -10,6 +10,4 @@ import com.himanshu.quickcommerce.order.domain.OrderMapper;
 public interface CustomerMapper {
 
     CustomerDto toDto(Customer customer);
-
-    List<CustomerDto> toDtoList(List<Customer> customers);
 }
