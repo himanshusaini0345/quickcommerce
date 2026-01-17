@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:8080
-@token = eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiU1RPUkVfTUFOQUdFUiIsInN1YiI6ImhpbWFuc2h1c2FpbmkwMzQ1QGdtYWlsLmNvbSIsImlhdCI6MTc2ODQ3OTYxMSwiZXhwIjoxNzY4NDc5NjcxfQ.jAjpFV2NCU8uA9hKZo5YAZp5cfpN_e0eQ6W8HaQllZs
+@token = eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiU1RPUkVfTUFOQUdFUiIsInN1YiI6ImhpbWFuc2h1c2FpbmkwMzQ1QGdtYWlsLmNvbSIsImlhdCI6MTc2ODY1MTQ5MywiZXhwIjoxNzY4NjU1MDkzfQ.nKqUfgjoZX_DlZclpfHVS8Ks7sXqeOeVmiczS55IChA
 
 ### Get customers
 GET {{baseUrl}}/customers
@@ -21,6 +21,7 @@ Content-Type: application/json
 
 {
   "name" : "Mobile",
+  "description": "abc2",
   "price": "560"
 }
 

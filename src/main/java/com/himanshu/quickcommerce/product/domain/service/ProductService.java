@@ -25,7 +25,7 @@ public class ProductService {
 
     @Transactional
     public ProductDto create(ProductCreateRequest request) {
-        Product product = Product.create(
+        Product product = Product.create( 
                 request.getName(),
                 request.getDescription(),
                 request.getPrice(),
